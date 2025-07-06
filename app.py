@@ -4,13 +4,10 @@ import bcrypt
 import cohere
 import re
 
-
 COHERE_API_KEY = "f9G37a19SxAsetxWEcb7WUxZJys2KJzXCtGikcHr"
 co = cohere.Client(COHERE_API_KEY)
 
 st.set_page_config(page_title="Toyota Chatbot", layout="wide")
-
-
 
 def cosine_similarity(vec1, vec2):
     dot = sum(a * b for a, b in zip(vec1, vec2))
