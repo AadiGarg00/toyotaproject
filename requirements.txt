@@ -1,5 +1,4 @@
 streamlit
 cohere
-sqlite3
 bcrypt
 re
