@@ -114,18 +114,18 @@ if st.session_state.logged_in:
         st.markdown("Ask any question about Toyota's cars, service, or features.")
         st.header("🤖 Bot Responses")
         for i, (q, a) in enumerate(st.session_state.bot_pairs):
-            if st.button(q):
+            if st.button(q,key=f"bot_btn_{i}"):
                 st.session_state.selected_response = (q, a)
                 st.session_state.page = "chat"
                 st.rerun()
-        if st.button("🧹 Clear History"):
+        if st.button("🧹 Clear History",key="clear_history"):
             st.session_state.bot_pairs = []
             st.session_state.selected_response = None
             st.session_state.page = "main"
             st.rerun()
 
     if st.session_state.page == "main":
-        st.title("🚗 Welcome to Toyota Assistant")
+        st.title("Welcome to Toyota Assistant")
 
     
 
@@ -163,7 +163,7 @@ if st.session_state.logged_in:
                         model="command-r-plus",
                         prompt=f"You are an expert assistant for Toyota customers. Answer this question briefly:\n\n{user_question}",
                         max_tokens=150,
-                        temperature=0.7
+                        temperature=0.1
                     )
                     answer = response.generations[0].text.strip()
                     st.info(answer)
@@ -182,6 +182,6 @@ if st.session_state.logged_in:
         st.title("📥 Selected Chat Response")
         st.markdown(f"**You asked:** {q}")
         st.info(a)
-        if st.button("🔙 Back to Chat"):
+        if st.button("🔙 Back to Chat" ,key="back_to_chat"):
             st.session_state.page = "main"
             st.rerun()
